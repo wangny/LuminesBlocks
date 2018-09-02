@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angela's Lumines Block</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <style>
+        body{
+            background: black;
+
+        }
+        i{
+            height: 4vw;
+            width: 4vw;
+            border-style: groove;
+            border-color: rgba(255,255,255,.6);
+            border-width: 2px;
+            position: absolute;
+            float: left;
+        }
+        .orange{
+            background-color: orange;
+        }
+        .white{
+            background-color: white;
+        }
+        .clear{
+            background-color: rgba(255,255,255,.4);
+        }
+        #panel{
+            position: relative;
+            height: 80vh; 
+            width: 100%;
+        }
+        #line{
+            border: none;
+            width: 30px;
+            background: radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
+            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
+            border-radius: 15px;
+            height: 100%;
+            display: inline;
+            left: 0vw;
+            z-index: 100;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container" style="margin-bottom: 10vh">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 style="text-align: center; color: white"> Angela's Lumines Block </h1>
+        </div>
+        <div class="col-md-3">
+            <h3 id="score" style="text-align: center; color: white;"> Score: </h1>
+        </div>
+    </div>
+
+    <div class="container" id="panel">
+        <i id="line"></i>
+        <hr style="background-color: white; margin-top: 8vw"></hr>
+
+
+    </div>
+    
+</body>
+
+
+<script type="text/javascript" src="block.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+</html>
