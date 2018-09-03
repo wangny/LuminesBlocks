@@ -2,9 +2,10 @@
    
 var type = {"orange" : "orange", "white" : "white", "clear" : "clear"};
 var doc = document;
-var toRemove = [];
 var panel = [];
+var toRemove = [];
 var bw = 4;
+var blocks = {};
 
 function block(id, ratio = 0.5){
     //init
@@ -31,33 +32,41 @@ function block(id, ratio = 0.5){
     this.clear = function(){
         this.type = type.clear;
         this.blk.className = type.clear;
-        clearInterval(this.did);
         toRemove.push(this.id);
     };
 
     this.toLeft = function(){
         var top = parseInt((this.blk.style.top).split('vw')[0]) / bw;
         var left = parseInt((this.blk.style.left).split('vw')[0]) / bw;
-        if(left>1 && panel[top][left-1] == -1){
-            panel[top][left] = -1;
+        var rtop = Math.floor(top);
+        var ctop = Math.ceil(top);
+        if(left>1 && 
+            !(panel[ctop][left-1] != -1 &&  blocks[ panel[ctop][left-1] ].dropped)
+            && panel[rtop][left-1] == -1 ){
+            panel[rtop][left] = -1;
             this.blk.style.left = (left-1)*bw + "vw";
-            panel[top][left-1] = this.id;
+            panel[rtop][left-1] = this.id;
         }
     };
 
     this.toRight = function(){
         var top = parseInt((this.blk.style.top).split('vw')[0]) / bw;
         var left = parseInt((this.blk.style.left).split('vw')[0]) / bw;
-        if(left<23 && panel[top][left+1] == -1){
-            panel[top][left] = -1;
+        var rtop = Math.floor(top);
+        var ctop = Math.ceil(top);
+        if(left<23 &&
+            !(panel[ctop][left+1] != -1 &&  blocks[ panel[ctop][left+1] ].dropped)
+            && panel[rtop][left+1] == -1){
+            panel[rtop][left] = -1;
             this.blk.style.left = (left+1)*bw + "vw";
-            panel[top][left+1] = this.id;
+            panel[rtop][left+1] = this.id;
         }
     };
 
     this.toButtom = function(){
         var left = parseInt((this.blk.style.left).split('vw')[0]) / bw;
         var top = parseInt((this.blk.style.top).split('vw')[0]) / bw;
+        var top = Math.floor(top);
         if(top<9 && panel[top+1][left] == -1){
             panel[top][left] = -1;
             this.blk.style.top = (top+1)*bw + "vw";
@@ -71,6 +80,10 @@ function block(id, ratio = 0.5){
 
     this.getLeft = function(){
         return parseInt((this.blk.style.left).split('vw')[0]) / bw;
+    }
+
+    this.isClear = function(){
+        return (this.type == type.clear)
     }
 }
 
