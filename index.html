@@ -19,7 +19,6 @@
     <style>
         body{
             background: black;
-
         }
         i{
             height: 4vw;
@@ -47,16 +46,24 @@
         #line{
             border: none;
             width: 30px;
-            background: radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
-            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
-            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
-            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1)30%, rgba(247, 255, 255, 0.6)90%); 
+            background: radial-gradient(ellipse at center, rgba(255,255,255,1), transparent 90%); 
             border-radius: 15px;
             height: 100%;
             display: inline;
             left: 0vw;
             z-index: 100;
             visibility: hidden;
+        }
+        .back{
+            margin-top: 8vw;
+            margin-left: 2.7vw;
+            width: 92vw;
+            height: 32vw;
+            background-image: 
+                    linear-gradient(to bottom, transparent 90%, rgba(255,255,255,.6)),
+                    linear-gradient(to right,  rgba(250, 247, 214,.2) 90%, rgba(255,255,255,.6));
+            background-size: 4vw 4vw, 4vw 4vw;
+            background-position: 0 0, 0 0;
         }
     </style>
 
@@ -74,7 +81,7 @@
 
     <div class="container" id="panel">
         <i id="line"></i>
-        <hr style="background-color: white; margin-top: 8vw"></hr>
+        <i class="back"></i>
 
 
     </div>
