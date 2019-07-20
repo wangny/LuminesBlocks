@@ -48,7 +48,7 @@
     }
 
     function scan(scanline){
-        var left = parseInt((scanline.style.left).split('vw')[0]) / bw;
+        var left = parseInt((scanline[0].style.left).split('vw')[0]) / bw;
         var ncol = Array(10);
         ncol.fill(-1);
         if(left >= 23) left = 0;
@@ -71,7 +71,7 @@
             }
             else ncol = col;
         }
-        scanline.style.left = left*bw + "vw";
+        for ( i = 0; i < scanline.length; i++) scanline[i].style.left = left*bw + "vw";
         col = ncol;
         delete ncol;
     }
@@ -156,19 +156,29 @@
         id = create(id);
         
         //var runid = setInterval( create, 5000);
-        var scanline = $.panel.find("#line")[0];
-        scanline.style.left = "0vw";
+        var scanline = $.panel.find(".scan");
+        for ( i = 0; i < scanline.length; i++)  scanline[i].style.left = "0vw";
         col.fill(-1);
 
         setscan = function(){
-            scanline.style.visibility = "visible";
-            scanid = setInterval( scan, 250, scanline);
+            for ( i = 0; i < scanline.length; i++) scanline[i].style.visibility = "visible";
+            scanid = setInterval( scan, 200, scanline);
         }
 
         thread = function(){
             if(cur[0].dropped && cur[0].getTop()<2) gameover(runid, scanid);
             if(cur[1].dropped && cur[1].getTop()<2) gameover(runid, scanid);
-            if(cur[0].dropped && cur[1].dropped) id = create(id);
+            if(cur[0].dropped && cur[1].dropped){
+                clearInterval(cur[0].did);
+                clearInterval(cur[1].did);
+                clearInterval(cur[2].did);
+                clearInterval(cur[3].did);
+                cur[0].did = setInterval( drop, 50, cur[0].blk , 0.25);
+                cur[1].did = setInterval( drop, 50, cur[1].blk , 0.25);
+                cur[2].did = setInterval( drop, 50, cur[2].blk , 0.25);
+                cur[3].did = setInterval( drop, 50, cur[3].blk , 0.25);
+                id = create(id);
+            }
         }
 
         var runid = setInterval( thread, 100);
@@ -180,6 +190,7 @@
         if(cur[3]==null || cur[3]==undefined) return;
         switch(event.which){
             case 37 : //left
+                if(cur[0].dropped && cur[1].dropped) break;
                 clearInterval(cur[0].did);
                 clearInterval(cur[1].did);
                 clearInterval(cur[2].did);
@@ -194,6 +205,7 @@
                 cur[3].did = setInterval( drop, 125, cur[3].blk , 0.25);
                 break;
             case 39 : //right
+                if(cur[1].dropped && cur[0].dropped) break;
                 clearInterval(cur[0].did);
                 clearInterval(cur[1].did);
                 clearInterval(cur[2].did);

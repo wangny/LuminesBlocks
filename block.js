@@ -36,7 +36,6 @@ function block(id, ratio = 0.5){
     };
 
     this.toLeft = function(){
-        if(this.dropped)return;
         var top = parseInt((this.blk.style.top).split('vw')[0]) / bw;
         var left = parseInt((this.blk.style.left).split('vw')[0]) / bw;
         var rtop = Math.floor(top);
@@ -51,7 +50,6 @@ function block(id, ratio = 0.5){
     };
 
     this.toRight = function(){
-        if(this.dropped)return;
         var top = parseInt((this.blk.style.top).split('vw')[0]) / bw;
         var left = parseInt((this.blk.style.left).split('vw')[0]) / bw;
         var rtop = Math.floor(top);
@@ -87,6 +85,10 @@ function block(id, ratio = 0.5){
 
     this.isClear = function(){
         return (this.type == type.clear)
+    }
+
+    this.isDropped = function(){
+        return this.isDropped
     }
 }
 

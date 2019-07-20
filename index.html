@@ -44,15 +44,13 @@
             width: 100%;
         }
         #line{
-            border: none;
             width: 30px;
             background: radial-gradient(ellipse at center, rgba(255,255,255,1), transparent 90%); 
             border-radius: 15px;
             height: 100%;
             display: inline;
-            left: 0vw;
-            z-index: 100;
-            visibility: hidden;
+            z-index: 10;
+            
         }
         .back{
             margin-top: 8vw;
@@ -64,6 +62,13 @@
                     linear-gradient(to right,  rgba(250, 247, 214,.2) 90%, rgba(255,255,255,.6));
             background-size: 4vw 4vw, 4vw 4vw;
             background-position: 0 0, 0 0;
+        }
+        .scan{
+            border:none;
+            display: inline;
+            visibility: hidden;
+            left: 0vw;
+            z-index: 100;
         }
     </style>
 
@@ -80,7 +85,9 @@
     </div>
 
     <div class="container" id="panel">
-        <i id="line"></i>
+        <i class="scan" style="height: 40px; width: 60px; background-color: rgba(255,255,255,.6);"></i>
+        <i class="scan" style="width: 0; height: 0; border-top: 20px solid transparent; border-left: 40px solid rgba(255,255,255,.6); border-bottom: 20px solid transparent; margin-left: 60px"></i>
+        <i class="scan" id="line"></i>
         <i class="back"></i>
 
 
